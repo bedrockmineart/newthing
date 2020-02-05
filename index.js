@@ -1,14 +1,11 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-require('dotenv/config');
-const http = require('http');
-const port = process.env.PORT || 3000;
-http.createServer().listen(port);
 
-const token = process.env.TOKEN;
+const token = require('./config.json').token
 const botname = require('./config.json').Botname1
 const PREFIX = require('./config.json').preefix
 const logo = require('./config.json').Logoo;
+const code = require('./config.json').codde
 
 bot.on('ready', () => {
     bot.user.setActivity("!commands for Help!")
@@ -124,7 +121,7 @@ bot.on('message', message => {
 	            .setColor('#ff0000')
 	            .setTitle('Commands')
                 .setAuthor(botname, logo)
-                .setDescription('**Current commands:** \n -ping (usage: !ping) \n -time (usage: !time) \n -commands (usage: !commands) \n -info (usage: !info server/bot/Subway) \n -suggest (usage: !suggest [suggetion]) \n **Current logs:** \n -message deleted')
+                .setDescription('**Current commands:** \n -ping (usage: !ping) \n -time (usage: !time) \n -commands (usage: !commands) \n -info (usage: !info server/bot/Subway) \n -suggest (usage: !suggest [suggetion]) \n -training (usage: !training (remove)) \n -tryout (usage: !tryout (remove)) \n **Current logs:** \n -message deleted')
                 .setThumbnail(logo)
 	            .setTimestamp()
 	            .setFooter('Bot made by Bedrockminecart.');
@@ -144,31 +141,30 @@ bot.on('message', message => {
               .setFooter('Bot made by Bedrockminecart.');
               bot.channels.get("649756831622627335").send(talkannounc)
           }  break;
-             case 'delete595':
+             case 'delete' + code:
               if (!args[1]) return message.reply('Error please define number')
               message.channel.bulkDelete(args[1])
               break;
-              case 'talk595':
+              case 'talk' + code:
                   if (!args[1]) { return }
                    else {
                     message.delete();
                     const lol = args[1].length;
-                    const annnnonnonii = message.content.slice (7 + lol);
+                    const annnnonnonii = message.content.slice (10 + lol);
                     const talkannounce = new Discord.RichEmbed()
                         .setColor('#ff0000')
                         .setTitle(args[1])
                         .setAuthor(botname, logo)
                         .setDescription(annnnonnonii)
-                        .setThumbnail(logo)
                         .setTimestamp()
                         .setFooter('Bot made by Bedrockminecart.');
                         message.channel.sendMessage(talkannounce)
                        break;   
                   }
-                     case 'poll595':
+                     case 'poll' + code:
                       if (!args[1]) { return }
                       else {
-                      const annnnonnoniiiii = message.content.slice (5);
+                      const annnnonnoniiiii = message.content.slice (8);
                       const talkannounccc = new Discord.RichEmbed()
                           .setColor('#ff0000')
                           .setTitle('Poll!')
@@ -182,6 +178,23 @@ bot.on('message', message => {
                             sentEmbed.react("👎")
                         })}
                          break;
+                    case 'training':
+                      let role56 = message.guild.roles.find(r => r.name === "Need training");
+                      let member = message.member;
+                      if (args[1] === 'remove') {
+                        member.removeRole(role56).catch(console.error);
+                      } else {
+                        member.addRole(role56).catch(console.error);
+                      }break;
+                    case 'tryout':
+                        let role57 = message.guild.roles.find(r => r.name === "Need tryout");
+                        let member1 = message.member;
+                        if (args[1] === 'remove') {
+                          member1.removeRole(role57).catch(console.error);
+                        } else {
+                          member1.addRole(role57).catch(console.error);
+                        }break;
+                      
       }
         
             
