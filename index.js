@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Discord = require('discord.js');
 let roblox = require('noblox.js');
 const bot = new Discord.Client();
@@ -12,7 +13,7 @@ const code = require('./config.json').codde;
 const code1 = require('./config.json').codde1;
 const s1 = "```";
 const release = require('./config.json').nextrelease
-const TESTE = require('./Trainins.txt')
+const TESTE = require('./Traingins.txt')
 const version = require('./config.json').versionofbot
 let GroupId = 5292854; 
 var cookie = require('./config.json').Cookie11
