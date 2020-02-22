@@ -12,10 +12,11 @@ const code = require('./config.json').codde;
 const code1 = require('./config.json').codde1;
 const s1 = "```";
 const release = require('./config.json').nextrelease
+const TESTE = require('./Trainins.txt')
 const version = require('./config.json').versionofbot
 let GroupId = 5292854; 
 var cookie = require('./config.json').Cookie11
-var maximumRank = 'Senior officer'
+var maximumRank = 'Senior officer';
 
 roblox.cookieLogin(cookie).catch(() => {console.log("Sorry, it failed.");});
 
@@ -154,14 +155,13 @@ bot.on('message', function(message) {
       message.delete();
       message.channel.sendMessage('Retrieving data (takes 2 mins)').then((message) => {
         var interval = setInterval (function () {
-          var idk69 = fs.readFileSync('Trainings.txt', 'utf8');
-          if (idk69) {
+          if (TESTE) {
             const surrvival = new Discord.RichEmbed()
           .setColor('#00ff00')
           .setTitle('Trainings/tryouts!')
           .setAuthor(botname, logo)
           .setDescription('Hello and welcome to the channel to see next trainings and tryouts.\n:warning: **ALL TIMES ARE GMT**')
-          .addField("**Next trainings/tryouts:** \n", idk69)
+          .addField("**Next trainings/tryouts:** \n", TESTE)
           .setThumbnail(logo)
           .setTimestamp()
           .setFooter('Update every 2 minutes. Last update at: ');
