@@ -32,7 +32,6 @@ function login() {
   return roblox.login(username, password);
 }
 
-
 bot.on('ready', () => {
   let myGuild = bot.guilds.get('649745201849696297');
   let membercount = myGuild.memberCount;
