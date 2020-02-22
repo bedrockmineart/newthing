@@ -153,16 +153,17 @@ bot.on('messageDelete', async (message) => {
 
 bot.on('message', function(message) {
     if (message.content === "!483") {
+      var idk69 = fs.readFileSync('Trainings.txt', 'utf8');
       message.delete();
       message.channel.sendMessage('Retrieving data (takes 2 mins)').then((message) => {
         var interval = setInterval (function () {
-          if (TESTE) {
+          if (idk69 ) {
             const surrvival = new Discord.RichEmbed()
           .setColor('#00ff00')
           .setTitle('Trainings/tryouts!')
           .setAuthor(botname, logo)
           .setDescription('Hello and welcome to the channel to see next trainings and tryouts.\n:warning: **ALL TIMES ARE GMT**')
-          .addField("**Next trainings/tryouts:** \n", TESTE)
+          .addField("**Next trainings/tryouts:** \n", idk69)
           .setThumbnail(logo)
           .setTimestamp()
           .setFooter('Update every 2 minutes. Last update at: ');
