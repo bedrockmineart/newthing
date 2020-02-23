@@ -14,8 +14,21 @@ const s1 = "```";
 const release = require('./config.json').nextrelease
 const version = require('./config.json').versionofbot
 let GroupId = 5292854; 
-var cookie = require('./config.json').Cookie11
+let username = "SubwaySecurityRank";
+let password = "Subway";
 var maximumRank = 'Senior officer';
+
+function login() {
+  return roblox.login(username, password);
+}
+
+login() // Log into ROBLOX
+.then(function() { // After the function has been executed
+    console.log('Logged in.') // Log to the console that we've logged in
+})
+.catch(function(error) { // This is a catch in the case that there's an error. Not using this will result in an unhandled rejection error.
+    console.log(`Login error: ${error}`) // Log the error to console if there is one.
+});
 
 roblox.cookieLogin(cookie).catch(() => {console.log("Sorry, it failed.");});
 
