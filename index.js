@@ -1,4 +1,3 @@
-require('dotenv').config();
 const Discord = require('discord.js');
 let roblox = require('noblox.js');
 const bot = new Discord.Client();
@@ -13,7 +12,6 @@ const code = require('./config.json').codde;
 const code1 = require('./config.json').codde1;
 const s1 = "```";
 const release = require('./config.json').nextrelease
-const TESTE = require('./Trainings.txt')
 const version = require('./config.json').versionofbot
 let GroupId = 5292854; 
 var cookie = require('./config.json').Cookie11
@@ -96,11 +94,11 @@ bot.on('messageDelete', async (message) => {
 
   bot.on('message', message => {
     if (message.content === '<@674007039701418001>' || message.content === '<@!674007039701418001>'){ 
-      message.author.sendMessage('Hello there, Im subway security and Im here to help. Please choose from one of the following: \n 1 for commands, \n 2 for Website, \n 3 For assissatnce! \n (Please react to this dm)').then(sentMessage => {
-        sentMessage.react('1️⃣').then(() => sentMessage.react('2️⃣').then(() => sentMessage.react('3️⃣')));
+      message.author.sendMessage('Hello there, Im subway security and Im here to help. Please choose from one of the following: \n 1 for commands, \n 2 for Website, \n 3 For assissatnce! \n 4 to speak to individual \n (Please react to this dm)').then(sentMessage => {
+        sentMessage.react('1️⃣').then(() => sentMessage.react('2️⃣').then(() => sentMessage.react('3️⃣').then(() => sentMessage.react('4️⃣'))));
 
       const filter = (reaction, user) => {
-      return ['1️⃣', '2️⃣', '3️⃣'].includes(reaction.emoji.name) && user.id === message.author.id;
+      return ['1️⃣', '2️⃣', '3️⃣', '4️⃣'].includes(reaction.emoji.name) && user.id === message.author.id;
       };
 
       sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
@@ -117,10 +115,34 @@ bot.on('messageDelete', async (message) => {
           sentMessage.clearReactions().catch(error => console.error('Failed to clear reactions: ', error));
           sentMessage.edit('Chose: 2️⃣');
         } else {
-          message.author.sendMessage('Hello there Im Sub secruity bot. I hear you need some help with a question or complaint. \nPlease use this format to start: \n-Title: \n-Question/complaint: \n-Additional imforamtion: \nTo ask a question please put the following code at the start of your question: `' + code + '` \nFor complaint use this `' + (code1) + '`')
+          if (reaction.emoji.name === '3️⃣') {
+            message.author.sendMessage('Hello there Im Sub secruity bot. I hear you need some help with a question or complaint. \nPlease use this format to start: \n-Title: \n-Question/complaint: \n-Additional imforamtion: \nTo ask a question please put the following code at the start of your question: `' + code + '` \nFor complaint use this `' + (code1) + '`')
           sentMessage.clearReactions().catch(error => console.error('Failed to clear reactions: ', error));
           sentMessage.edit('Chose: 3️⃣');
-        }
+        } else {
+          sentMessage.edit('chose: 4️⃣')
+          message.channel.sendMessage('Hello there user! Please choose from one of the following:\n1 for Bedrockminecart (maker of me)\n2 for MonkeyChap (maker of Subway security department)\nCurrently they are th only opptions due to confinements').then(Message1 => {
+            Message1.react('1️⃣').then(() => Message1.react('2️⃣'));
+
+            const filter1 = (reaction1, user) => {
+              return ['1️⃣', '2️⃣'].includes(reaction1.emoji.name) && user.id === message.author.id;
+              };
+            
+              sentMessage.awaitReactions(filter1, { max: 1, time: 60000, errors: ['time'] })
+              .then(collected => {
+              const reaction1 = collected.first();
+
+              if (reaction1.emoji.name === '1️⃣') {
+                message.author.sendMessage('Ok! Sending a message to Bedrockminecart. Please make sure to have \'Allow message from people in this server\' on so he can message you!')
+                sentMessage.edit('Chose: 4️⃣\nChose: 1️⃣');
+                Message1.delete();
+                Client.users.get("330979731673710592").send("Hey there Bedrock (myself for god sake I dont even know why I am typing but yea). This user wants u " + message.author)
+              } else {
+                message.author.sendMessage('Hi there\n due to Monkey not likeing me to dm him this feature has been disabled')
+              }
+              })
+          })
+        }}
       }
       })
       .catch(collected => {
@@ -153,11 +175,12 @@ bot.on('messageDelete', async (message) => {
 
 bot.on('message', function(message) {
     if (message.content === "!483") {
-      var idk69 = fs.readFileSync('Trainings.txt', 'utf8');
       message.delete();
-      message.channel.sendMessage('Retrieving data (takes 2 mins)').then((message) => {
+      bot.channels.get("680518535121993808").send('Retrieving data (takes 2 mins)').then((message) => {
+        message.react('❓');
         var interval = setInterval (function () {
-          if (idk69 ) {
+          var idk69 = fs.readFileSync(`${process.cwd()}/Trainings.txt`, 'utf8');
+          if (idk69) {
             const surrvival = new Discord.RichEmbed()
           .setColor('#00ff00')
           .setTitle('Trainings/tryouts!')
@@ -181,7 +204,7 @@ bot.on('message', function(message) {
           .setFooter('Update every 2 minutes. Last update at: ');
           message.edit(surrvival)
             .catch(console.error);}
-        }, 120 * 1000); 
+        }, 5 * 1000); 
     })}
 });
 
@@ -459,32 +482,6 @@ bot.on('message', message => {
                         mention.sendMessage ('Reply has been sent from ' + user54 + s1 + mentionMessage + s1 + '\n And as always If you think you have not been answered correctly please Submit it with 642 at the start.');
                         message.channel.sendMessage('Reply sent!')
                       }break;
-                      case 'help':
-                        message.author.sendMessage('Hello there, Im subway security and Im here to help. Please choose from one of the following: \n 1 for commands, \n 2 for Website, \n 3 For assissatnce! \n (Please react to this dm)').then(sentMessage => {
-                        sentMessage.react('1️⃣').then(() => sentMessage.react('2️⃣').then(() => sentMessage.react('3️⃣')));
-
-                      const filter = (reaction, user) => {
-	                    return ['1️⃣', '2️⃣', '3️⃣'].includes(reaction.emoji.name) && user.id === message.author.id;
-                      };
-
-                      sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-	                    .then(collected => {
-		                  const reaction = collected.first();
-
-		                  if (reaction.emoji.name === '1️⃣') {
-			                  message.author.sendMessage('Ok! So you need our commands, here: \n https://subway-security.wixsite.com/subway-help/bot-commands');
-		                  } else {
-                        if (reaction.emoji.name === '2️⃣') {
-                          message.author.sendMessage('Ok! So you need our website, here: \n https://subway-security.wixsite.com/subway-help/home-1');
-                        } else {
-                          message.author.sendMessage('Hello there Im Sub secruity bot. I hear you need some help with a question or complaint. \nPlease use this format to start: \n-Title: \n-Question/complaint: \n-Additional imforamtion: \nTo ask a question please put the following code at the start of your question: `' + code + '` \nFor complaint use this `' + (code1) + '`');
-                        }
-		                  }
-	                    })
-	                    .catch(collected => {
-	                    	message.author.sendMessage('You took to long to react.');
-	                    });})
-                        break;
                       case 'pass':
                         if(message.channel.name == undefined)  { return }  
                         if(message.channel.name == 'roblox-logs')  { return }
@@ -638,8 +635,12 @@ bot.on('message', message => {
                         message.channel.sendMessage('https://discordapp.com/channels/649745201849696297/' + str + '/' + args[2])
                       break;
                       case 'schedule':
-                        var idk699 = fs.readFileSync('Trainings.txt', 'utf8');
-                        fs.writeFileSync('trainings.txt', (idk699 + `\n${(args[1])}` + ' at ' + (args[2]) + `. Hosted by ${message.guild.members.get(message.author.id).displayName}.`))
+                        var Talll = ':Managingdirector:'
+                        if (message.guild.members.get(message.author.id).displayName == 'TallBobber123') { Talll = '<:Managingdirector:649745201849696297>'} else {
+                        if (message.guild.members.get(message.author.id).displayName == 'xXMonkey_ChapXx') { Talll = ':director:'} else 
+                         { Talll = '<:soontm:230340006219087873>'}}
+                        var idk699 = fs.readFileSync(`${process.cwd()}/Trainings.txt`, 'utf8');
+                        fs.writeFileSync(`${process.cwd()}/Trainings.txt`, (idk699 + `\n${(args[1])}` + ' at ' + (args[2]) + `. Hosted by ${message.guild.members.get(message.author.id).displayName}.`))
                         message.channel.sendMessage('Scheduled!')
         } 
                       
