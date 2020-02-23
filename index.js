@@ -33,6 +33,38 @@ function login() {
 }
 
 bot.on('ready', () => {
+  bot.channels.get("680518535121993808").fetchMessage("681084773241716736").then((message) => {
+    var interval = setInterval (function () {
+      var idk69 = fs.readFileSync(`${process.cwd()}/Trainings.txt`, 'utf8');
+      if (idk69) {
+        const surrvival = new Discord.RichEmbed()
+      .setColor('#00ff00')
+      .setTitle('Trainings/tryouts!')
+      .setAuthor(botname, logo)
+      .setDescription('Hello and welcome to the channel to see next trainings and tryouts.\n:warning: **ALL TIMES ARE GMT**')
+      .addField("**Next trainings/tryouts:** \n", idk69)
+      .setThumbnail(logo)
+      .setTimestamp()
+      .setFooter('Update every 2 minutes. Last update at: ');
+      message.edit(surrvival)
+        .catch(console.error);
+      } else {
+      const surrvival = new Discord.RichEmbed()
+      .setColor('#00ff00')
+      .setTitle('Trainings/tryouts!')
+      .setAuthor(botname, logo)
+      .addField("**Next trainings/tryouts:** \n\n", ':x: Nothing currently scheduled.')
+      .setDescription('Hello and welcome to the channel to see next trainings and tryouts.\n:warning: **ALL TIMES ARE GMT**')
+      .setThumbnail(logo)
+      .setTimestamp()
+      .setFooter('Update every 2 minutes. Last update at: ');
+      message.edit(surrvival)
+        .catch(console.error);}
+    }, 120 * 1000); 
+})
+})
+
+bot.on('ready', () => {
   let myGuild = bot.guilds.get('649745201849696297');
   let membercount = myGuild.memberCount;
   let memberCountChannel = myGuild.channels.get('675619637882519593');
@@ -642,10 +674,12 @@ bot.on('message', message => {
                         var idk699 = fs.readFileSync(`${process.cwd()}/Trainings.txt`, 'utf8');
                         fs.writeFileSync(`${process.cwd()}/Trainings.txt`, (idk699 + `\n${(args[1])}` + ' at ' + (args[2]) + `. Hosted by ${message.guild.members.get(message.author.id).displayName}.`))
                         message.channel.sendMessage('Scheduled!')
+                        break;
                       case 'clear-schedule':
                         var Talll = ':Managingdirector:'
                         fs.writeFileSync(`${process.cwd()}/Trainings.txt`, '')
                         message.channel.sendMessage('Cleared the Schedule!')
+                      break;
         } 
                       
                       
