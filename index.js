@@ -177,7 +177,6 @@ bot.on('message', function(message) {
     if (message.content === "!483") {
       message.delete();
       bot.channels.get("680518535121993808").send('Retrieving data (takes 2 mins)').then((message) => {
-        message.react('❓');
         var interval = setInterval (function () {
           var idk69 = fs.readFileSync(`${process.cwd()}/Trainings.txt`, 'utf8');
           if (idk69) {
@@ -204,7 +203,7 @@ bot.on('message', function(message) {
           .setFooter('Update every 2 minutes. Last update at: ');
           message.edit(surrvival)
             .catch(console.error);}
-        }, 5 * 1000); 
+        }, 120 * 1000); 
     })}
 });
 
@@ -290,6 +289,7 @@ bot.on('message', message => {
              case 'delete':
               if(message.channel.name == undefined)  { return }
               if(message.member.roles.has('649756129240547348')) {
+              message.delete();
               if (!args[1]) return message.reply('Error please define number')
               message.channel.bulkDelete(args[1])
             } else {
@@ -642,6 +642,10 @@ bot.on('message', message => {
                         var idk699 = fs.readFileSync(`${process.cwd()}/Trainings.txt`, 'utf8');
                         fs.writeFileSync(`${process.cwd()}/Trainings.txt`, (idk699 + `\n${(args[1])}` + ' at ' + (args[2]) + `. Hosted by ${message.guild.members.get(message.author.id).displayName}.`))
                         message.channel.sendMessage('Scheduled!')
+                      case 'clear-schedule':
+                        var Talll = ':Managingdirector:'
+                        fs.writeFileSync(`${process.cwd()}/Trainings.txt`, '')
+                        message.channel.sendMessage('Cleared the Schedule!')
         } 
                       
                       
